@@ -1,3 +1,7 @@
+
 <?php
-phpinfo();
+include("header.php");
 ?>
+FOOOOOOOOOOT
+<?php
+include ("footer.php");
