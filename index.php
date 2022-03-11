@@ -1,15 +1,14 @@
-
 <?php
 include("header.php");
+
+include_once "config.php";
+$pdo = new PDO("mysql:host=" . config::SERVEUR . ";dbname=" . config::BDD, config::UTILISATEUR, config::MOTDEPASSE);
+
+$requete = $pdo->prepare("select * from plage");
+$requete->execute();
+$lignes = $requete->fetchAll();
 ?>
-<div class="container">
-<h1>Créer une plage</h1>
-<form action="post">
-    <div class="form-group">
-        <label for="nom">Nom de la plage</label>
-        <input type="text" class="form-control" id="nom" placeholder="Nom de la plage">
-    </div>
-</form>
-</div>
+
+
 <?php
-include ("footer.php");
+include("footer.php");
