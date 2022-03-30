@@ -1,5 +1,5 @@
 <?php
-
+$title="Nouvelle étude";
 include("header.php");
 
 include_once "config.php";
@@ -12,6 +12,11 @@ $lignes = $requete->fetchAll();
 $requete = $pdo->prepare("select * from etude");
 $requete->execute();
 $etude = $requete->fetchAll();
+
+$requete = $pdo->prepare("select * from liaison");
+$requete->execute();
+$liaison = $requete->fetchAll();
+
 ?>
 <div class="container">
     <h1>Créer une étude</h1>
@@ -26,6 +31,7 @@ $etude = $requete->fetchAll();
             <?php foreach ($lignes as $l) { ?>
                 <input type="checkbox" value="<?php echo $l["id"] ?>" name="id[]">
                 <label for="<?php echo $l['id'] ?>"><?php echo $l['nom'] ?></label>
+                <br>
             <?php } ?>
         </div>
         <div>
@@ -37,18 +43,20 @@ $etude = $requete->fetchAll();
 <div class="container">
     <hr>
     <h2>Liste des études</h2>
-    <table>
-        <tr>
-            <th>
+    <table class="table">
+        <thead class="thead-dark">
+
+            <th scope="col">
                 Etudes
             </th>
             <th></th>
-        </tr>
+
+        </thead>
         <tr>
         <?php foreach ($etude as $e) { ?>
 
             <td><?php echo $e['nom'] ?>  </td>
-
+<td><?php foreach($liaison as $l)  ?></td>
 
             <td><a href="actions/deleteetude.php?id=<?php echo $e['id'] ?>"
                    class="btn btn-success">Supprimer</a></td>

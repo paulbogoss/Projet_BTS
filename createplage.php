@@ -1,4 +1,6 @@
 <?php
+
+$title="Nouvelle plage";
 include("header.php");
 
 include_once "config.php";
